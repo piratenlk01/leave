@@ -1,0 +1,19 @@
+#annualplan .hoverTable{
+    width:100%; 
+    border-collapse:collapse; 
+}
+
+#annualplan .hovertd:hover {
+    background-color: #ffff99;
+}
+
+#annualplan .blockColor{
+    padding: 1px; 
+}
+#annualplan th,#annualplan td {
+    width: 50px;
+    height: 50px;
+}
+#annualplan .iconleavetype{
+    width: 30px;
+}

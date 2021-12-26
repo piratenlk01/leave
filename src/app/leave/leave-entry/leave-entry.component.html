@@ -1,0 +1,207 @@
+<h5>สร้างใบลาใบ</h5>
+<hr>
+<p-confirmDialog [baseZIndex]="10000" rejectButtonStyleClass="p-button-text" [style]="{width: '20vw'}"></p-confirmDialog>
+<div class="mb-2">
+    <button class="btn btn-secondary me-1" (click)="backpage()"><i class="fa fa-arrow-circle-left"></i> ย้อนกลับ</button>
+    <button class="btn btn-primary me-1" (click)="insert()"><i class="fas fa-save"></i> บันทึก</button>
+</div>
+<div class="boxset-leavedetailstatus">
+        <div class="form-group ms-3 mb-0">
+            <label class="control-label"><b>เลขที่เอกสาร:</b></label>
+            <label class="fc-blue"><b>{{LeaveView.LeaveNo}}</b></label>
+        </div>
+        <div class="form-group ms-5 mb-0">
+            <label class="control-label"><b>ชื่อพนักงาน:</b></label>
+            <label class="fc-blue"><b>{{LeaveView.StaffName}}</b></label>
+        </div>
+        <div class="form-group ms-5 mb-0">
+            <label class="control-label"><b>สถานะ:</b></label>
+            <label class="labelStatus"
+                [ngStyle]="{'background-color': LeaveView.StatusColor}"><b>{{LeaveView.StatusText}}</b></label>
+        </div>
+        <div class="form-group ms-5 mb-0">
+            <label class="control-label"><b>วันที่:</b></label>
+            <label class="fc-blue"><b>{{LeaveView.CreateDatetime}}</b></label>
+        </div>
+</div>
+<div class="row px-5 pt-3">
+    <div class="col-12" [formGroup]="LeaveNew">
+        <div class="form-group row mb-0">
+            <div class="col-lg-3">
+                <p class="font-weight-bold mt-3 mb-0"><b>ปี</b><span
+                        style="color: red;font-size: 17px;margin-left: 10px;">*</span></p>
+            </div>
+            <div class="col-lg-9">
+                <select class="form-select" formControlName="Year" name="Year"
+                [ngClass]="{ 'is-invalid': year.errors?.required && year.touched}" required>
+                    <option class="form-control" disabled selected value=''>กรุณาเลือก</option>
+                    <option class="form-control" value="2021">2021</option>
+                    <option class="form-control" value="2022">2022</option>
+                </select>
+                <div class="invalid-feedback">
+                    <span style="color:#FF3434" *ngIf="year.errors?.required && year.touched">กรุณาเลือกปี</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row mb-0">
+            <div class="col-lg-3">
+                <p class="font-weight-bold mt-3 mb-0"><b>ประเภทการลา</b><span
+                        style="color: red;font-size: 17px;margin-left: 10px;">*</span></p>
+            </div>
+            <div class="col-lg-9">
+                <select class="form-select" formControlName="LeaveType"  name="LeaveType"
+                [ngClass]="{ 'is-invalid': leavetype.errors?.required && leavetype.touched}" required>
+                    <option class="form-control" disabled selected  value=''>กรุณาเลือก</option>
+                    <option class="form-control" value="01">ลากิจ</option>
+                    <option class="form-control" value="02">ลาป่วย</option>
+                    <option class="form-control" value="03">ลาพักผ่อนประจำปี</option>
+                </select>
+                <div class="invalid-feedback">
+                    <span style="color:#FF3434" *ngIf="leavetype.errors?.required && leavetype.touched">กรุณาเลือกปี</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row mb-0">
+            <div class="col-lg-3">
+                <p class="font-weight-bold mt-3 mb-0"><b>เหตุผลการลา</b><span
+                        style="color: red;font-size: 17px;margin-left: 10px;">*</span></p>
+            </div>
+            <div class="col-lg-9">
+                <input type="text" class="form-control" formControlName="Reason"  name="Reason" autocomplete=off
+                [ngClass]="{ 'is-invalid': reason.errors?.required && reason.touched}" required>
+                <div class="invalid-feedback">
+                    <span style="color:#FF3434" *ngIf="reason.errors?.required && reason.touched">กรุณาเลือกปี</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row mb-0">
+            <div class="col-lg-3">
+                <p class="font-weight-bold mt-3  mb-0"><b>ตั้งแต่วันที่</b> <span
+                        style="color: red;font-size: 17px;margin-left: 10px;">*</span></p>
+            </div>
+            <div class="col-lg-9">
+                <div class="form-group row">
+                    <div class="col-lg-4">
+                        <div class="form-group row">
+                            <div class="col-sm-12 pd-0">
+                                <input type="date" class="form-control normalclass" formControlName="DateStart" name="DateStart" autocomplete=off 
+                                [ngClass]="{ 'is-invalid': datestart.errors?.required && datestart.touched}" required>
+                                <div class="invalid-feedback">
+                                    <span style="color:#FF3434" *ngIf="datestart.errors?.required && datestart.touched">กรุณาเลือกปี</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                          <div class="form-group row mtres">
+                            <label for="inputPassword" class="col-sm-4 col-form-label pd-0 fs-12 labelperioad"><b class="paddingperioad">ช่วงเวลา:</b></label>
+                            <div class="col-sm-8 pd-0">
+                                <select class="form-select ml-1 normalclass" name="approve1">
+                                    <option class="form-control" disabled aria-selected="true">กรุณาเลือก</option>
+                                    <option class="form-control" value>เต็มวัน</option>
+                                    <option class="form-control" value>ช่วงเช้า</option>
+                                    <option class="form-control" value>ช่วงบ่าย</option>
+                                </select>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row mb-0">
+            <div class="col-lg-3">
+                <p class="font-weight-bold mt-3  mb-0"><b>ถึงวันที่</b> <span
+                        style="color: red;font-size: 17px;margin-left: 10px;">*</span></p>
+            </div>
+            <div class="col-lg-9">
+                <div class="form-group row">
+                    <div class="col-lg-4">
+                        <div class="form-group row">
+                            <div class="col-sm-12 pd-0">
+                                <input type="date" class="form-control normalclass" formControlName="DateEnd" name="DateEnd" autocomplete=off 
+                                [ngClass]="{ 'is-invalid': dateend.errors?.required && dateend.touched}" required>
+                                <div class="invalid-feedback">
+                                    <span style="color:#FF3434" *ngIf="dateend.errors?.required && dateend.touched">กรุณาเลือกปี</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                          <div class="form-group row mtres">
+                            <label for="inputPassword" class="col-sm-4 col-form-label pd-0 fs-12 labelperioad"><b class="paddingperioad">ช่วงเวลา:</b></label>
+                            <div class="col-sm-8 pd-0">
+                                <select class="form-select ml-1 normalclass" name="approve1">
+                                    <option class="form-control" disabled aria-selected="true">กรุณาเลือก</option>
+                                    <option class="form-control" value>เต็มวัน</option>
+                                    <option class="form-control" value>ช่วงเช้า</option>
+                                    <option class="form-control" value>ช่วงบ่าย</option>
+                                </select>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row mb-0">
+            <div class="col-lg-3 col-md-2 col-sm-4 col-4">
+                <p class="font-weight-bold mt-3"><b>รวม</b> <span
+                        style="color: red;font-size: 17px;margin-left: 10px;">*</span></p>
+            </div>
+            <div class="col-lg-9 col-md-10 col-sm-8 col-8">
+                <p class="font-weight-bold mt-3"><span class="fc-blue"> <b>{{LeaveNew.get('TotalDay').value}}</b> </span>วัน</p>
+            </div>
+        </div>
+        <!-- เบอร์โทรศัพท์ -->
+        <div class="form-group row mb-0">
+            <div class="col-lg-3">
+                <p class="font-weight-bold mt-3  mb-0"><b>เบอร์โทรศัพท์</b> <span
+                        style="color: red;font-size: 17px;margin-left: 10px;">*</span></p>
+            </div>
+            <div class="col-lg-9">
+                <input type="text" class="form-control" formControlName="Phone" name="Phone"  autocomplete=off
+                [ngClass]="{ 'is-invalid': phone.errors?.required && phone.touched}" required>
+                <div class="invalid-feedback">
+                    <span style="color:#FF3434" *ngIf="phone.errors?.required && phone.touched">กรุณาเลือกปี</span>
+                </div>
+            </div>
+        </div>
+        <!-- หมายเหตุ -->
+        <div class="form-group row mb-0">
+            <div class="col-lg-3">
+                <p class="font-weight-bold mt-3  mb-0"><b>หมายเหตุ</b></p>
+            </div>
+            <div class="col-lg-9">
+                <input type="text" formControlName="Remark" class="form-control "
+                    name="remark" autocomplete=off>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row px-5">
+    <h6><b>รายชื่อผู้อนุมัติ</b></h6>
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-responsive table-bordered table-sm mt-2 w-table">
+                <thead style="background: #d4ffff;">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">วันที่</th>
+                        <th scope="col">ผู้บังคับบัญชา / ผู้อนุมัติ</th>
+                        <th scope="col">ผลอนุมัติ</th>
+                        <th scope="col">ความเห็น</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of LeaveApproveView;let i=index;">
+                        <td>{{i+1}}</td>
+                        <td>{{item.ApproveDate}}</td>
+                        <td>{{item.UserAppproveName}}</td>
+                        <td>{{item.ApproveStatusText}}</td>
+                        <td>{{item.Remark}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

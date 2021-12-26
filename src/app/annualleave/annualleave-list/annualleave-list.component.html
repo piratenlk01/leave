@@ -1,0 +1,40 @@
+<h5>สร้างแผนการลาพักร้อนประจำปี</h5>
+<hr>
+<div class="mb-3">
+    <button class="btn btn-primary" routerLink="entry"><i class="fas fa-plus"></i> สร้างแผนการลาพักร้อนใหม่</button>
+</div>
+<p-table #dt1 [value]="ListLeavePlanView" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="50"
+    [totalRecords]="ListLeavePlanView.length"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['StaffName']" scrollable="true">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+            <span class="p-input-icon-left p-ml-auto me-5">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText size="50" placeholder="ค้นหา ชื่อพนักงาน"
+                    (input)="dt1.filterGlobal($event.target.value, 'contains')" class="p-inputtext-sm"
+                    style="width:500px">
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="text-center" style="width:100px">#</th>
+            <th>ปีแผนพักร้อน</th>
+            <th>ชื่อพนักงาน</th>
+            <th class="text-center">สถานะ</th>
+        </tr>  
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+        <tr>
+            <td class="text-center" style="width:100px">{{rowIndex+1}}</td>
+            <td style="white-space: normal;">
+                <a [routerLink]="['entry', item.Id]">{{item.Year}}</a>
+            </td>
+            <td style="white-space: normal;">{{item.StaffName}}</td>
+            <td class="text-center" style="white-space: normal;">
+                <span class="statuscumtom" [ngStyle]="{'background-color': item.StatusColor}">{{item.StatusText}}</span>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

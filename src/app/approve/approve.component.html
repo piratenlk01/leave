@@ -1,0 +1,47 @@
+<h5>ใบลารอการอนุมัติ</h5>
+<hr>
+<p-confirmDialog [baseZIndex]="10000" rejectButtonStyleClass="p-button-text" [style]="{width: '20vw'}"></p-confirmDialog>
+<p-table #dt1 [value]="leavelist" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="50"
+    [totalRecords]="leavelist.length"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['StaffName']" scrollable="true">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+            <span class="p-input-icon-left p-ml-auto me-5">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText size="50" placeholder="ค้นหา ชื่อพนักงาน"
+                    (input)="dt1.filterGlobal($event.target.value, 'contains')" class="p-inputtext-sm"
+                    style="width:500px">
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="text-center" style="width:50px">#</th>
+            <th>ชื่อพนักงาน</th>
+            <th>ประเภทการลา</th>
+            <th>วันที่</th>
+            <th>ถึงวันที่</th>
+            <th class="text-center">รวม</th>
+            <th class="text-center">สถานะ</th>
+            <th> </th>
+        </tr>  
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+        <tr>
+            <td class="text-center" style="width:50px">{{rowIndex+1}}</td>
+            <td style="white-space: normal;">{{item.StaffName}}</td>
+            <td style="white-space: normal;">{{item.LeaveTypeThai}}</td>
+            <td style="white-space: normal;">{{item.DateStartText}}</td>
+            <td style="white-space: normal;">{{item.DateEndText}}</td>
+            <td class="text-center" style="white-space: normal;">{{item.TotalDay}}</td>
+            <td class="text-center" style="white-space: normal;">
+                <span class="statuscumtom" [ngStyle]="{'background-color': item.StatusColor}">{{item.StatusText}}</span>
+            </td>
+            <td style="white-space: normal;">
+                <i class="fas fa-thumbs-up fa-2x okapprove me-3" tooltipPosition="top" pTooltip="อนุมัติ" (click)="approve()"></i>
+                <i class="fas fa-thumbs-down fa-2x noapprove" tooltipPosition="top" pTooltip="ไม่อนุมัติ" (click)="noapprove()"></i>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

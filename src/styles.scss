@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+.fc-blue{ color: #001aff;}
+.p-datatable-scrollable-header-box{
+    padding-right: 0 !important;
+}
+.statuscumtom {
+    padding: 5px;
+    border-radius: 100px;
+    width: 100% !important;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+.okapprove{
+    color: #7471ff;
+    cursor: pointer;
+}
+.noapprove{
+    color: #ff6565;
+    cursor: pointer;
+}
+.boxset-leavedetailstatus {
+    width: 100%;
+    background: #FFFFEA;
+    padding: 10px 30px 10px 30px;
+    display: flex;
+    border-bottom: 1px solid #dfdfd6;
+}
+.boxset-leavedetailstatus .labelStatus {
+    margin-left: 20px;
+    margin-bottom:0;
+    font-weight:bold;
+    padding: 3px 30px;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 16px;
+}

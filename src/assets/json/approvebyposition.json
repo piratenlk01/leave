@@ -1,0 +1,46 @@
+{
+    "data": {
+        "Id": 276,
+        "CompCode": "NHC",
+        "Type": null,
+        "TypeDescription": null,
+        "PositionCode": null,
+        "PositionDescription": null,
+        "DivisionCode": null,
+        "DivisionDescription": null,
+        "IsActive": false,
+        "CreateUserId": null,
+        "CreateUserName": null,
+        "CreateDatetime": null,
+        "UpdateUserId": null,
+        "UpdateUserName": null,
+        "UpdateDatetime": null,
+        "ApproveDetail": [
+            {
+                "Id": 592,
+                "SettingApproveId": 276,
+                "OrderNo": 1,
+                "UserAppproveId": 2,
+                "UserAppproveName": "สุรัตนา xxxx"
+            },
+            {
+                "Id": 593,
+                "SettingApproveId": 276,
+                "OrderNo": 2,
+                "UserAppproveId": 54,
+                "UserAppproveName": "วิมล xxxx"
+            },
+            {
+                "Id": 878,
+                "SettingApproveId": 276,
+                "OrderNo": 3,
+                "UserAppproveId": 61,
+                "UserAppproveName": "โชคชัย xxxx"
+            }
+        ],
+        "IsValid": true,
+        "Msg": null,
+        "IsValidStatus": 0,
+        "ListMsg": null
+    }
+}

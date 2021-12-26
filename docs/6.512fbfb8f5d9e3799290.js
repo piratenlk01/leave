@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{iAKE:function(n,o,r){"use strict";r.r(o),r.d(o,"HrconfigModule",function(){return i});var t=r("ofXK"),e=r("fXoL");let i=(()=>{class n{}return n.\u0275mod=e.Ib({type:n}),n.\u0275inj=e.Hb({factory:function(o){return new(o||n)},imports:[[t.b]]}),n})()}}]);
